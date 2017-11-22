@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="visionDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Credits" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Qualification" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_dbo_Student_dbo_Course_CourseID" FromRole="Course" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Enrolment">
+    <Key>
+      <PropertyRef Name="EnrolmentID" />
+    </Key>
+    <Property Name="EnrolmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Grade" Type="Decimal" Precision="3" Scale="2" />
+    <Property Name="EnrolmentComplete" Type="Boolean" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_dbo_Enrolment_dbo_Student_StudentID" FromRole="Enrolment" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="InternationalStudent" Type="Boolean" />
+    <Property Name="EnrolmentDate" Type="DateTime" Precision="3" />
+    <Property Name="CourseID" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_dbo_Student_dbo_Course_CourseID" FromRole="Student" ToRole="Course" />
+    <NavigationProperty Name="Enrolments" Relationship="Self.FK_dbo_Enrolment_dbo_Student_StudentID" FromRole="Student" ToRole="Enrolment" />
+  </EntityType>
+  <Association Name="FK_dbo_Student_dbo_Course_CourseID">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Enrolment_dbo_Student_StudentID">
+    <End Role="Student" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Enrolment" Type="Self.Enrolment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Enrolment">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="visionDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Enrolments" EntityType="Self.Enrolment" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <AssociationSet Name="FK_dbo_Student_dbo_Course_CourseID" Association="Self.FK_dbo_Student_dbo_Course_CourseID">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Enrolment_dbo_Student_StudentID" Association="Self.FK_dbo_Enrolment_dbo_Student_StudentID">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Enrolment" EntitySet="Enrolments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

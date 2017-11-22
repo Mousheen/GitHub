@@ -1,0 +1,40 @@
+﻿<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<body>
+    <div style="background-color:rgba(34,34,34,0.9); color:grey; padding:10px; text-align:center; margin-top:20px; min-width:100%">
+        <img src="~/Assets/Uni-Logo.png" style="max-width:500px; resize:both" />
+        <h5 style="padding-left:80px; padding-right:80px">
+            Immerse yourself in a vibrant campus filled with the energy of
+            students and faculty who make the most of every moment.
+            An atmosphere of ideas, events and exciting opportunities
+            ensure a rich and satisfying college experience.
+        </h5>
+        <p>Choose from the three options below to navigate this website.</p>
+    </div>
+    <div class="flex-container" style="background-color:rgba(34,34,34,0.9); color:grey; padding:10px; text-align:center">
+        <div class="row" style="text-align:center">
+            <a href="/Students/Index">
+                <div class="w3-btn w3-ripple w3-margin" style="margin:0;padding:0">
+                    <img src="~/Assets/Student-Icon.png" style="max-width:200px">
+                    <h6 style="margin:15px; color:grey">STUDENT TABLE</h6>
+                </div>
+            </a>
+            <a href="/Enrolments/Index">
+                <div class="w3-btn w3-ripple w3-margin" style="margin:0;padding:0">
+                    <img src="~/Assets/Enrolment-Icon.png" style="max-width:200px">
+                    <h6 style="margin:15px; color:grey">ENROLMENT TABLE</h6>
+                </div>
+            </a>
+            <a href="/Courses/Index">
+                <div class="w3-btn w3-ripple w3-margin" style="margin:0;padding:0">
+                    <img src="~/Assets/Courses-Icon.png" style="max-width:200px">
+                    <h6 style="margin:15px; color:grey">COURSES TABLE</h6>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>

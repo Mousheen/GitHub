@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="visionDatabaseEntities-Web.config Connection String" description="visionDatabaseEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/UniModel.csdl|res://*/UniModel.ssdl|res://*/UniModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=visionserver.database.windows.net;initial catalog=visionDatabase;persist security info=True;user id=mousheen;password=Sheeraz0786;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="c:\\users\\nadia\\documents\\visual\ studio\ 2017\\Projects\\Assessment\ 6\\Assessment\ 6\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='visionDatabaseEntities']/@connectionString" />
+  </parameter>
+</parameters>

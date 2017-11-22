@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Assessment_6.Enrolment>
+
+@{
+    ViewBag.Title = "Enrolments";
+}
+
+<h2 style="text-align:center">Enrolment Details</h2><br />
+
+<h2>
+    @Html.ActionLink("Create New", "Create")
+</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.EnrolmentComplete)*@
+            <b>Enrolment Completed</b>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Student.FirstName)*@
+            <b>First Name</b>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnrolmentComplete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EnrolmentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EnrolmentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EnrolmentID })
+        </td>
+    </tr>
+}
+
+</table>
